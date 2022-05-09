@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react'
+import './App.css'
+const data = require("./data/male-30-34.json");
 
 function App() {
+  const [value, setValue] = useState();
+
+  const values = data.cardio.hamr.reps;
+  const max = data.cardio.hamr.reps.length;
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <input type="range" list="tickmarks" min={0} max={max} id="slider" onChange={e=>setValue(e.target.value)} orient="vertical" />
+
+    {/* <datalist id="tickmarks">
+      {values.map(v => {
+        return <option value={v} key={v} />
+      })}
+    </datalist> */}
+
+    <h3>{value}</h3>
+    </>
   );
 }
 
