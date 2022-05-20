@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import "./App.css";
-import Slider from "./components/Slider";
+
+import ComponentColumn from "./components/slider/ComponentColumn";
 
 const data = require("./data/male-30-34.json");
+const categories = Object.keys(data); // [strength, endurance, cardio]
 
 export default function App() {
   const [score, setScore] = useState();
@@ -10,6 +11,7 @@ export default function App() {
   const [enduranceScore, setEnduranceScore] = useState();
   const [cardioScore, setCardioScore] = useState();
 
+  // updates overall score whenever a component score changes
   useEffect(() => {
     setScore(strengthScore + enduranceScore + cardioScore);
   }, [strengthScore, enduranceScore, cardioScore]);
@@ -24,37 +26,25 @@ export default function App() {
     setCardioScore(val);
   }
 
+
+
+
   return (
-    <>
-      <h2 className="score">{score}</h2>
-      <div className="container-horizontal">
-        <div className="container-vertical">
-          <h3>Strength</h3>
-          <select>
-            <option>Pushups</option>
-            <option>Hand-release</option>
-          </select>
-          <Slider data={data.strength.pushups} handler={handleStrength} />
-        </div>
-        <div className="container-vertical">
-          <h3>Endurance</h3>
-          <select>
-            <option>Situps</option>
-            <option>Plank</option>
-            <option>Crunches</option>
-          </select>
-          <Slider data={data.endurance.situps} handler={handleEndurance} />
-        </div>
-        <div className="container-vertical">
-          <h3>Cardio</h3>
-          <select>
-            <option>HAMR</option>
-            <option>Run</option>
-            <option>Walk</option>
-          </select>
-          <Slider data={data.cardio.hamr} handler={handleCardio} />
-        </div>
+    <div className=''>
+      {/* 1. show current score  2. set goal score */}
+      <h2 className="text-center text-4xl">{score}</h2>
+
+      {/* main slider section */}
+      <div className="flex flex-row justify-around">
+        {categories.map(c => {
+          return (
+            <ComponentColumn key={c} category={c} data={data[c]} handlePoints={(c === 'strength') ? handleStrength : (c === 'endurance') ? handleEndurance : handleCardio} />
+          )
+        })}
       </div>
-    </>
+
+      {/* change age/sex */}
+
+    </div>
   );
 }
