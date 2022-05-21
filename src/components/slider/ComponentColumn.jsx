@@ -4,9 +4,10 @@ import ComponentSelector from './ComponentSelector'
 import Slider from './Slider'
 
 
-export default function ComponentColumn({category, data, handlePoints}) {
+export default function ComponentColumn({category, data, handlePointsTop}) {
   const components = Object.keys(data);
   // const capitalizedCat = category.slice(0,1).toUpperCase()+category.slice(1);
+  const [compScore, setCompScore] = useState();
   let categoryName;
   switch (category) {
     case 'strength':
@@ -28,12 +29,17 @@ export default function ComponentColumn({category, data, handlePoints}) {
     setComponent(option);
   }
 
-  return (
-    <div className="flex flex-col text-center w-1/4 h-80">
-      <h3>{categoryName}</h3>
-      <ComponentSelector handleSelect={handleSelect} options={components} />
+  function handlePointsMiddle(points) {
+    setCompScore(points);
+    handlePointsTop(points)
+  }
 
-      <Slider data={data[component]} handlePoints={handlePoints} />
+  return (
+    <div className="flex flex-col text-center w-1/4 h-full">
+      <h3 className='flex justify-between'><span>{categoryName}:</span><span className='font-bold'>{compScore}</span></h3>
+
+      <Slider data={data[component]} handlePointsBottom={handlePointsMiddle} />
+      <ComponentSelector handleSelect={handleSelect} options={components} />
     </div>
   );
 }
