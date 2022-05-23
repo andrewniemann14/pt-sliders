@@ -32,7 +32,7 @@ export default function App() {
 
   return (
     <div className='bg-white h-full w-full relative'>
-      {/* 1. show current score  2. set goal score */}
+      {/* TODO: set goal score in upper left corner, while keeping score centered */}
       <OverallScore score={score} />
 
       {/* main slider section */}
@@ -45,7 +45,7 @@ export default function App() {
       </div>
 
       {/* change age/sex */}
-      <p className="absolute bottom-0 right-0">Male, 30-34</p>
+      <p className="m-auto mt-8 text-center">Male, 30-34</p>
     </div>
   );
 }

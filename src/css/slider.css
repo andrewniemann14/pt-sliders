@@ -1,3 +1,6 @@
+/* https://www.smashingmagazine.com/2021/12/create-custom-range-input-consistent-browsers/ */
+/* https://range-input-css.netlify.app/ */
+
 .slider {
   -webkit-appearance: slider-vertical;
   writing-mode: bt-lr;
