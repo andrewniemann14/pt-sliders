@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
+import Bracketeer from "./components/Bracketeer";
+import Menu from "./components/menu/Menu";
+import MenuButton from "./components/menu/MenuButton";
 import OverallScore from "./components/OverallScore";
 
 import ComponentColumn from "./components/slider/ComponentColumn";
 
-const data = require("./data/male-30-34.json");
-const categories = Object.keys(data); // [strength, endurance, cardio]
+// let data = require("./data/male-30-34.json");
+
 
 export default function App() {
   const [score, setScore] = useState();
@@ -27,25 +30,40 @@ export default function App() {
     setCardioScore(val);
   }
 
+  const categories = ['strength', 'endurance', 'cardio']
+  const [data, setData] = useState(require('./data/male-30-34.json'));
+
+
+  function handleBracket(bracket) {
+    setData(require(`./data/${bracket}.json`));
+  }
+
+  const [open, setOpen] = useState(false);
+  function handleMenu() {
+    setOpen(!open);
+  }
 
 
 
   return (
-    <div className='bg-white h-full w-full relative'>
+    <div className='bg-white h-full w-full relative overflow-hidden'>
       {/* TODO: set goal score in upper left corner, while keeping score centered */}
+      {/* only after slider auto-adjust is working */}
       <OverallScore score={score} />
+      
+      <MenuButton handler={handleMenu} />
+      <Menu open={open} />
 
       {/* main slider section */}
-      <div className="flex flex-row justify-around h-3/4 border-t-2">
-        {categories.map(c => {
-          return (
-            <ComponentColumn key={c} category={c} data={data[c]} handlePointsTop={(c === 'strength') ? handleStrength : (c === 'endurance') ? handleEndurance : handleCardio} />
-          )
-        })}
+      <div className="flex flex-row justify-around h-3/4">
+        <ComponentColumn category={'strength'} data={data.strength} handlePointsTop={handleStrength} />
+        <ComponentColumn category={'endurance'} data={data.endurance} handlePointsTop={handleEndurance} />
+        <ComponentColumn category={'cardio'} data={data.cardio} handlePointsTop={handleCardio} />
       </div>
 
       {/* change age/sex */}
-      <p className="m-auto mt-8 text-center">Male, 30-34</p>
+      <Bracketeer handleBracket={handleBracket} />
+
     </div>
   );
 }
