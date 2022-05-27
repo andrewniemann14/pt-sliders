@@ -1,0 +1,62 @@
+.btn {
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  top: 8px;
+  right: 8px;
+  transition-duration: 0.5s;
+  cursor: pointer;
+}
+
+.icon {
+  transition-duration: 0.5s;
+  position: absolute;
+  height: 4px;
+  width: 30px;
+  top: 10px;
+  background-color: black;
+  border-radius: 10px;
+}
+
+.icon::before {
+  transition-duration: 0.5s;
+  position: absolute;
+  height: 4px;
+  width: 30px;
+  background-color: black;
+  border-radius: 10px;
+  content: "";
+  top: -8px;
+}
+
+.icon::after {
+  transition-duration: 0.5s;
+  position: absolute;
+  height: 4px;
+  width: 30px;
+  background-color: black;
+  border-radius: 10px;
+  content: "";
+  top: 8px;
+}
+
+.open {
+  transition-duration: 0.5s;
+  background: transparent;
+}
+
+
+.open>.icon {
+  background-color: white;
+  background: transparent;
+}
+  
+.open>.icon::before{
+  background-color: white;
+  transform: rotateZ(45deg) scaleX(1.25) translate(5px, 5px);
+}
+
+.open>.icon::after{
+  background-color: white;
+  transform: rotateZ(-45deg) scaleX(1.25) translate(5px, -5px);
+}
