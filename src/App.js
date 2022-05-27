@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Bracketeer from "./components/Bracketeer";
-import Menu from "./components/menu/Menu";
-import MenuButton from "./components/menu/MenuButton";
+import MenuController from "./components/menu/MenuController";
 import OverallScore from "./components/OverallScore";
 
 import ComponentColumn from "./components/slider/ComponentColumn";
@@ -38,10 +37,10 @@ export default function App() {
     setData(require(`./data/${bracket}.json`));
   }
 
-  const [open, setOpen] = useState(false);
-  function handleMenu() {
-    setOpen(!open);
-  }
+  // const [open, setOpen] = useState(false);
+  // function handleMenu() {
+  //   setOpen(!open);
+  // }
 
 
 
@@ -51,8 +50,7 @@ export default function App() {
       {/* only after slider auto-adjust is working */}
       <OverallScore score={score} />
       
-      <MenuButton handler={handleMenu} />
-      <Menu open={open} />
+      <MenuController />
 
       {/* main slider section */}
       <div className="flex flex-row justify-around h-3/4">
