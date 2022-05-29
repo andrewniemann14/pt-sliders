@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
+
 import Bracketeer from "./components/Bracketeer";
+import ComponentColumn from "./components/slider/ComponentColumn";
 import MenuController from "./components/menu/MenuController";
 import OverallScore from "./components/OverallScore";
-
-import ComponentColumn from "./components/slider/ComponentColumn";
-
-// let data = require("./data/male-30-34.json");
 
 
 export default function App() {
@@ -29,19 +27,12 @@ export default function App() {
     setCardioScore(val);
   }
 
-  const categories = ['strength', 'endurance', 'cardio']
   const [data, setData] = useState(require('./data/male-30-34.json'));
 
 
   function handleBracket(bracket) {
     setData(require(`./data/${bracket}.json`));
   }
-
-  // const [open, setOpen] = useState(false);
-  // function handleMenu() {
-  //   setOpen(!open);
-  // }
-
 
 
   return (
@@ -53,7 +44,7 @@ export default function App() {
       <MenuController />
 
       {/* main slider section */}
-      <div className="flex flex-row justify-around h-3/4">
+      <div className="flex flex-row justify-around h-2/3 mt-2">
         <ComponentColumn category={'strength'} data={data.strength} handlePointsTop={handleStrength} />
         <ComponentColumn category={'endurance'} data={data.endurance} handlePointsTop={handleEndurance} />
         <ComponentColumn category={'cardio'} data={data.cardio} handlePointsTop={handleCardio} />

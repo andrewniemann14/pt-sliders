@@ -46,9 +46,9 @@ export default function Slider({ data, handlePointsBottom }) {
           orient="vertical"
         />
 
-        <p className="absolute w-full h-full top-0 left-0 pointer-events-none">
+        <p className="absolute w-full h-full top-0 left-0 pointer-events-none flex flex-col items-center">
           {/* top being used instead of bottom to handle reversed JSON */}
-          <span className="absolute px-1 left-0 text-left font-bold" style={{ top: labelHeight + "%" }}>
+          <span className="absolute text-center m-auto font-bold -mt-4" style={{ top: labelHeight + "%" }}>
             {reps}
           </span>
         </p>

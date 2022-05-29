@@ -23,7 +23,7 @@ export default function ComponentColumn({category, data, handlePointsTop}) {
 
   return (
     <div className="flex flex-col text-center w-1/4 h-full">
-      <div className='flex justify-between mb-2'>
+      <div className='flex justify-between mb-6'>
         {category === 'strength' ? <Pushups /> : category === 'endurance' ? <Situps /> : <Running />}
         <span className='font-bold'>{compScore}</span>
       </div>
