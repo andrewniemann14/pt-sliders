@@ -4,12 +4,12 @@
   height: 2rem;
   top: 8px;
   right: 8px;
-  transition-duration: 0.5s;
+  transition-duration: 0.25s;
   cursor: pointer;
 }
 
 .icon {
-  transition-duration: 0.5s;
+  transition-duration: 0.25s;
   position: absolute;
   height: 4px;
   width: 30px;
@@ -19,7 +19,7 @@
 }
 
 .icon::before {
-  transition-duration: 0.5s;
+  transition-duration: 0.25s;
   position: absolute;
   height: 4px;
   width: 30px;
@@ -30,7 +30,7 @@
 }
 
 .icon::after {
-  transition-duration: 0.5s;
+  transition-duration: 0.25s;
   position: absolute;
   height: 4px;
   width: 30px;
