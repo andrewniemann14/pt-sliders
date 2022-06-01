@@ -8,11 +8,11 @@ export default function MenuPane({ open }) {
       {/* make this a block, welcoming feedback */}
       <a href="mailto:pt@niemann.app" className="text-center m-4 underline">Contact me</a>
 
-      <div className="mt-8 p-2">
-        <p className="text-center">Planned features:</p>
+      <div className="absolute bottom-4 p-2">
+        <p className="text-teal-100">Planned features:</p>
         <ul>
-          <li className="my-4">sliders auto-adjust to target score</li>
-          <li className="my-4">slider changes color based on points gained for one more rep</li>
+          <li className="my-4 text-sm text-teal-100">color indicator based on points gained for one more rep</li>
+          <li className="my-4 text-sm text-teal-100">Goal Mode: sliders auto-adjust to target score</li>
         </ul>
 
       </div>
