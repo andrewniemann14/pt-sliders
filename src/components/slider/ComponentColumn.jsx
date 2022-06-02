@@ -23,9 +23,9 @@ export default function ComponentColumn({category, data, handlePointsTop}) {
 
   return (
     <div className="flex flex-col text-center w-1/4 h-full">
-      <div className='flex justify-between mb-6'>
+      <div className='flex justify-between mb-6 border-b-2'>
         {category === 'strength' ? <Pushups /> : category === 'endurance' ? <Situps /> : <Running />}
-        <span className='font-bold'>{compScore}</span>
+        <span className='font-bold text-lg'>{compScore}</span>
       </div>
 
       <Slider data={data[component]} handlePointsBottom={handlePointsMiddle} />
