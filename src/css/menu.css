@@ -45,7 +45,6 @@
   background: transparent;
 }
 
-
 .open>.icon {
   background-color: white;
   background: transparent;
@@ -53,10 +52,10 @@
   
 .open>.icon::before{
   background-color: white;
-  transform: rotateZ(45deg) scaleX(1.25) translate(5px, 5px);
+  transform: rotateZ(45deg) translate(6px, 5px);
 }
 
 .open>.icon::after{
   background-color: white;
-  transform: rotateZ(-45deg) scaleX(1.25) translate(5px, -5px);
+  transform: rotateZ(-45deg) translate(6px, -5px);
 }
