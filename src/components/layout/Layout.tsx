@@ -3,8 +3,8 @@ import { useState } from 'react'
 import DesktopContainer from './DesktopContainer';
 import MobileContainer from './MobileContainer';
 
-export default function Layout() {
-  const [width, setWidth] = useState(window.innerWidth);
+const Layout = () => {
+  const [width, setWidth] = useState<number>(window.innerWidth);
   const breakpoint = 480;
 
   return (
@@ -14,3 +14,5 @@ export default function Layout() {
     <DesktopContainer />
   )
 }
+
+export default Layout

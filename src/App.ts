@@ -7,30 +7,30 @@ import OverallScore from "./components/OverallScore";
 
 
 export default function App() {
-  const [score, setScore] = useState();
-  const [strengthScore, setStrengthScore] = useState();
-  const [enduranceScore, setEnduranceScore] = useState();
-  const [cardioScore, setCardioScore] = useState();
+  const [score, setScore] = useState<number>();
+  const [strengthScore, setStrengthScore] = useState<number>();
+  const [enduranceScore, setEnduranceScore] = useState<number>();
+  const [cardioScore, setCardioScore] = useState<number>();
 
   // updates overall score whenever a component score changes
   useEffect(() => {
-    setScore(strengthScore + enduranceScore + cardioScore);
+    setScore(strengthScore! + enduranceScore! + cardioScore!); // these are non-null assertion operators
   }, [strengthScore, enduranceScore, cardioScore]);
 
-  function handleStrength(val) {
+  function handleStrength(val: number): void {
     setStrengthScore(val);
   }
-  function handleEndurance(val) {
+  function handleEndurance(val: number): void {
     setEnduranceScore(val);
   }
-  function handleCardio(val) {
+  function handleCardio(val: number): void {
     setCardioScore(val);
   }
 
   const [data, setData] = useState(require('./data/male-30-34.json'));
 
 
-  function handleBracket(bracket) {
+  function handleBracket(bracket: string): void {
     setData(require(`./data/${bracket}.json`));
   }
 

@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import MenuController from './MenuController';
 
-export default function MenuInit() {
+const MenuInit = () => {
   // false because it will be used as 'open' in MenuController
-  const [closed, setClosed] = useState(false);
+  const [closed, setClosed] = useState<boolean>(false);
 
   return (
     <MenuController closed={closed} />
   )
 }
+
+export default MenuInit;

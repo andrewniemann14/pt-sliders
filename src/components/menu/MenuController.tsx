@@ -3,12 +3,16 @@ import { useState } from 'react'
 import MenuPane from "./MenuPane";
 import MenuButton from "./MenuButton";
 
-export default function MenuController({closed}) {
+type Props = {
+  closed: boolean
+}
+
+const MenuController = ({closed}: Props) => {
   // closed === false
   console.log('MenuController loads');
   const [open, setOpen] = useState(closed)
 
-  function handleOpen() {
+  const handleOpen = (): void => {
     setOpen(!open);
   }
 
@@ -19,3 +23,5 @@ export default function MenuController({closed}) {
     </div>
   )
 }
+
+export default MenuController
