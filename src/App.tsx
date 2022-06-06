@@ -41,7 +41,7 @@ export default function App() {
       {/* only after slider auto-adjust is working */}
       <OverallScore score={score} />
       
-      <MenuController />
+      <MenuController closed={true} />
 
       {/* main slider section */}
       <div className="flex flex-row justify-around h-2/3 mt-2">

@@ -1,6 +1,11 @@
 
+type Props = {
+  data: object,
+  handleSelect: (select: string) => void,
+  options: []
+}
 
-export default function ComponentSelector({ data, handleSelect, options }) {
+export default function ComponentSelector({ data, handleSelect, options }: Props) {
 
   return (
     <select onChange={e => handleSelect(e.target.value)}>

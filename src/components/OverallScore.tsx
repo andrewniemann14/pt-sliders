@@ -1,6 +1,10 @@
 import { ReactComponent as Star } from '../img/star-svgrepo-com.svg';
 
-export default function OverallScore({score}) {
+type Props = {
+  score: number
+}
+
+export default function OverallScore({score}: Props) {
   // let scoreNum = Number(score);
   let color;
   if (score < 75) color = 'text-red-700';

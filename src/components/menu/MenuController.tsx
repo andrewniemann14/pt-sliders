@@ -8,9 +8,8 @@ type Props = {
 }
 
 const MenuController = ({closed}: Props) => {
-  // closed === false
-  console.log('MenuController loads');
-  const [open, setOpen] = useState(closed)
+  // closed === true
+  const [open, setOpen] = useState<boolean>(!closed)
 
   const handleOpen = (): void => {
     setOpen(!open);
