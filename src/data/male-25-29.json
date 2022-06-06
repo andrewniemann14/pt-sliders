@@ -1,6 +1,6 @@
 {
   "strength": {
-    "hand-release-push-ups": {
+    "push-ups": {
       "component": "1 Minute Push-ups",
       "reps": [
         62,
@@ -79,7 +79,7 @@
         1
       ]
     },
-    "push-ups": {
+    "hand-release-push-ups": {
       "component": "2 Minute Hand-Release Push-ups",
       "reps": [
         40,
