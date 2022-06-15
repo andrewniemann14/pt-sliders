@@ -26,6 +26,9 @@ export default function Bracketeer({ handleBracket }: Props) {
         <option value="30-34" selected>30-34</option>
         <option value="35-39">35-39</option>
         <option value="40-44">40-44</option>
+        <option value="45-49">45-49</option>
+        <option value="50-54">50-54</option>
+        <option value="55-59">55-59</option>
       </select>
 
     </div>
