@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react'
+import React from 'react'
 
 type Props = {
   handleBracket: (bracket: string) => void
 }
 
 export default function Bracketeer({ handleBracket }: Props) {
-  const [sex, setSex] = useState('male');
-  const [age, setAge] = useState('30-34');
+  const [sex, setSex] = React.useState('male');
+  const [age, setAge] = React.useState('30-34');
 
-  useEffect(() => {
+  React.useEffect(() => {
     handleBracket(sex + '-' + age)
   }, [sex, age])
 

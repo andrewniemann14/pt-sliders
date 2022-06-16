@@ -1,10 +1,10 @@
-import { useState } from 'react'
+import React from 'react'
 
 import DesktopContainer from './DesktopContainer';
 import MobileContainer from './MobileContainer';
 
 const Layout = () => {
-  const [width, setWidth] = useState<number>(window.innerWidth);
+  const [width, setWidth] = React.useState<number>(window.innerWidth);
   const breakpoint = 480;
 
   return (

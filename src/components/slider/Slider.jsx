@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React from "react";
 import "../../css/slider.css";
 
 // TODO: definitely need to get TypeScript in here
@@ -7,14 +7,14 @@ export default function Slider({ data, handlePointsBottom }) {
   const pointsArray = Array(data.points)[0]
   const max = repsArray.length;
 
-  const [sliderPos, setSliderPos] = useState(-max+1);
-  const [reps, setReps] = useState(repsArray[0]);
-  const [points, setPoints] = useState(pointsArray[0]);
-  const [labelHeight, setLabelHeight] = useState(0 / max);
+  const [sliderPos, setSliderPos] = React.useState(-max+1);
+  const [reps, setReps] = React.useState(repsArray[0]);
+  const [points, setPoints] = React.useState(pointsArray[0]);
+  const [labelHeight, setLabelHeight] = React.useState(0 / max);
 
 
   // Math.abs being used to handle reverse order of reps/points in JSON
-  useEffect(() => {
+  React.useEffect(() => {
     setReps(repsArray[Math.abs(sliderPos)]);
     setPoints(pointsArray[Math.abs(sliderPos)]);
     setLabelHeight((Math.abs(sliderPos) / max) * 100 - 5);
@@ -23,7 +23,7 @@ export default function Slider({ data, handlePointsBottom }) {
   // never refer to state in the same useEffect in which it's updated
   // this is why my points were using the PREVIOUS slider index
   // setPoints was right before a points reference, but setState is async
-  useEffect(() => {
+  React.useEffect(() => {
     handlePointsBottom(points)
   }, [points])
 
