@@ -1,17 +1,18 @@
 import React from "react";
 import "../../css/slider.css";
+import { DataContext, MaxOverallScoreContext } from "../ContextWrapper";
 
-// TODO: when bracket changes, adjust slider to new minimum so score doesn't go out of range, show NaN
-export default function Slider({ data, handlePointsBottom }) {
-  const repsArray = Array(data.reps)[0]
-  const pointsArray = Array(data.points)[0]
+// TODO: when bracket changes, adjust slider to new minimum so score doesn't go out of range and show NaN
+export default function Slider({ category, component, handlePointsSlider }) {
+  const [data, ] = React.useContext(DataContext);
+  const repsArray = Array(data[category][component].reps)[0]
+  const pointsArray = Array(data[category][component].points)[0]
   const max = repsArray.length;
 
   const [sliderPos, setSliderPos] = React.useState(-max+1);
   const [reps, setReps] = React.useState(repsArray[0]);
   const [points, setPoints] = React.useState(pointsArray[0]);
   const [labelHeight, setLabelHeight] = React.useState(0 / max);
-
 
   // Math.abs being used to handle reverse order of reps/points in JSON
   React.useEffect(() => {
@@ -24,9 +25,8 @@ export default function Slider({ data, handlePointsBottom }) {
   // this is why my points were using the PREVIOUS slider index
   // setPoints was right before a points reference, but setState is async
   React.useEffect(() => {
-    handlePointsBottom(points)
+    handlePointsSlider(points)
   }, [points])
-
 
 
   return (
