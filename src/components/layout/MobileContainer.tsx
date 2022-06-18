@@ -1,9 +1,12 @@
 import App from "../../App";
+import ContextWrapper from "../ContextWrapper";
 
 export default function MobileContainer() {
   return (
     <div className="overflow-hidden w-screen h-screen flex">
-      <App />
+      <ContextWrapper>
+        <App />
+      </ContextWrapper>
     </div>
   )
 }
