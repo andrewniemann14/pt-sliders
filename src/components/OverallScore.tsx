@@ -6,7 +6,7 @@ type Props = {
 
 export default function OverallScore({score}: Props) {
   // let scoreNum = Number(score);
-  let color;
+  let color: string;
   if (score < 75) color = 'text-red-700';
   else if (score < 80) color = 'text-lime-600';
   else if (score < 90) color = 'text-green-600';
