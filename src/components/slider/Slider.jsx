@@ -1,7 +1,7 @@
 import React from "react";
 import "../../css/slider.css";
 
-// TODO: definitely need to get TypeScript in here
+// TODO: when bracket changes, adjust slider to new minimum so score doesn't go out of range, show NaN
 export default function Slider({ data, handlePointsBottom }) {
   const repsArray = Array(data.reps)[0]
   const pointsArray = Array(data.points)[0]
