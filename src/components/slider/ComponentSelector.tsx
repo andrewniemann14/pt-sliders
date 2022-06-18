@@ -2,7 +2,7 @@
 type Props = {
   data: object,
   handleSelect: (select: string) => void,
-  options: []
+  options: string[]
 }
 
 export default function ComponentSelector({ data, handleSelect, options }: Props) {
