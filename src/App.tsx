@@ -2,18 +2,14 @@ import React from 'react';
 
 import Bracketeer from "./components/Bracketeer";
 import ComponentColumn from "./components/slider/ComponentColumn";
+import { DataContext } from './components/ContextWrapper';
 import MenuController from "./components/menu/MenuController";
 import OverallScore from "./components/OverallScore";
 
-const MaxScoreContext = React.createContext<number>(100);
-const BracketContext = React.createContext<object>({
-  data: require('./data/male-30-34.json')
-});
-
-
-
 export default function App() {
-  const [score, setScore] = React.useState<number>();
+
+  
+  const [score, setScore] = React.useState<number>(100);
   const [strengthScore, setStrengthScore] = React.useState<number>();
   const [enduranceScore, setEnduranceScore] = React.useState<number>();
   const [cardioScore, setCardioScore] = React.useState<number>();
@@ -33,34 +29,49 @@ export default function App() {
     setCardioScore(val);
   }
 
-  const [data, setData] = React.useState(require('./data/male-30-34.json'));
-
-
-  function handleBracket(bracket: string): void {
-    setData(require(`./data/${bracket}.json`));
+  interface DataFile {
+    strength: {
+      "push-ups": DataComponent,
+      "hand-release-push-ups": DataComponent
+    },
+    endurance: {
+      "sit-ups": DataComponent,
+      "crunches": DataComponent,
+      plank: DataComponent
+    },
+    cardio: {
+      run: DataComponent,
+      hamr: DataComponent
+    }
   }
+  
+  interface DataComponent {
+    component: string,
+    reps: number[],
+    points: number[]
+  }
+  
+  const [data, ] = React.useContext(DataContext)
 
 
   return (
-    <BracketContext.Provider value={data}>
-      <div className='bg-white h-full w-full relative overflow-hidden'>
-        {/* TODO: set goal score in upper left corner, while keeping score centered */}
-        {/* only after slider auto-adjust is working */}
-        <OverallScore score={score} />
-        
-        <MenuController closed={true} />
+    <div className='bg-white h-full w-full relative overflow-hidden'>
+      {/* TODO: set goal score in upper left corner, while keeping score centered */}
+      {/* only after slider auto-adjust is working */}
+      <OverallScore score={score} />
+      
+      <MenuController closed={true} />
 
-        {/* main slider section */}
-        <div className="flex flex-row justify-around h-2/3 mt-2">
-          <ComponentColumn category={'strength'} data={data.strength} handlePointsTop={handleStrength} />
-          <ComponentColumn category={'endurance'} data={data.endurance} handlePointsTop={handleEndurance} />
-          <ComponentColumn category={'cardio'} data={data.cardio} handlePointsTop={handleCardio} />
-        </div>
-
-        {/* change age/sex */}
-        <Bracketeer handleBracket={handleBracket} />
-
+      {/* main slider section */}
+      <div className="flex flex-row justify-around h-2/3 mt-2">
+        <ComponentColumn category={'strength'} data={data.strength} handlePointsTop={handleStrength} />
+        <ComponentColumn category={'endurance'} data={data.endurance} handlePointsTop={handleEndurance} />
+        <ComponentColumn category={'cardio'} data={data.cardio} handlePointsTop={handleCardio} />
       </div>
-    </BracketContext.Provider>
+
+      {/* change age/sex */}
+      <Bracketeer />
+
+    </div>
   );
 }
