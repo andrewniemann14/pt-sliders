@@ -12,11 +12,10 @@ const MenuPane = ({ open }: Props) => {
       <a href="mailto:pt@niemann.app" className="text-center m-4 underline">Contact me</a>
 
       <div className="absolute bottom-12 p-2">
-        <p className="text-teal-100 text-center">Planned features:</p>
+        <p className="text-teal-100 text-center">To do:</p>
         <ul>
-          <li className="my-4 text-sm text-teal-100">Component exemption option</li>
-          <li className="my-4 text-sm text-teal-100">Mock Test Mode with timers, HAMR audio</li>
-          <li className="my-4 text-sm text-teal-100">color indicator based on points gained for one more rep</li>
+          <li className="my-4 text-sm text-teal-100">MINOR FEATURE: color indicator based on points gained for one more rep</li>
+          <li className="my-4 text-sm text-teal-100">MAJOR FEATURE: Mock Test Mode with timers, HAMR audio, score input</li>
         </ul>
 
       </div>
