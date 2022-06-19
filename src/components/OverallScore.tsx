@@ -15,7 +15,7 @@ export default function OverallScore({score}: Props) {
   return (
     <div className="flex justify-center items-center py-2">
       {score >= 90 && <Star />}
-      <h1 className={'font-bold text-center mx-4 text-4xl ' + color}>{score}</h1>
+      <h1 className={'font-bold text-center mx-4 text-4xl ' + color}>{score.toPrecision(3)}</h1>
       {score >= 90 && <Star />}
 
     </div>

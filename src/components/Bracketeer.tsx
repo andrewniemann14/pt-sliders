@@ -16,11 +16,11 @@ export default function Bracketeer() {
 
   return (
     <div className="flex justify-center mt-4 space-x-1">
-      <select name="" id="" value={'male'} onChange={e => setSex(e.target.value)}>
+      <select name="" id="" defaultValue={'male'} onChange={e => setSex(e.target.value)}>
         <option value="male">Male</option>
         <option value="female">Female</option>
       </select>
-      <select name="" id="" value={'30-34'} onChange={e => setAge(e.target.value)}>
+      <select name="" id="" defaultValue={'30-34'} onChange={e => setAge(e.target.value)}>
         <option value="17-24">17-24</option>
         <option value="25-29">25-29</option>
         <option value="30-34">30-34</option>

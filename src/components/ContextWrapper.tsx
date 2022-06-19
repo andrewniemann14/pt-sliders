@@ -39,8 +39,6 @@ export default function ContextWrapper(props) {
     setData(require(`../data/${bracket}.json`));
   }, [bracket])
 
-  console.log(data);
-
   return (
     <BracketContext.Provider value={[bracket, setBracket]}>
       <DataContext.Provider value={[data, setData]}>
