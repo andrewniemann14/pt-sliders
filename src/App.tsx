@@ -7,58 +7,45 @@ import MenuController from "./components/menu/MenuController";
 import OverallScore from "./components/OverallScore";
 
 export default function App() {
+  const [overallPoints, setOverallPoints] = React.useState<number>(100);
+  const [overallMax, setOverallMax] = React.useState(100)
+  const [strengthPoints, setStrengthPoints] = React.useState<number>();
+  const [strengthMax, setStrengthMax] = React.useState<number>(20);
+  const [endurancePoints, setEndurancePoints] = React.useState<number>();
+  const [enduranceMax, setEnduranceMax] = React.useState<number>(20);
+  const [cardioPoints, setCardioPoints] = React.useState<number>();
+  const [cardioMax, setCardioMax] = React.useState<number>(60);
 
+  // updates max score whenever
+  React.useEffect(() => {
+    setOverallMax(strengthMax! + enduranceMax! + cardioMax!);
+  }, [strengthMax, enduranceMax, cardioMax, overallMax]);
   
-  const [score, setScore] = React.useState<number>(100);
-  const [strengthScore, setStrengthScore] = React.useState<number>();
-  const [enduranceScore, setEnduranceScore] = React.useState<number>();
-  const [cardioScore, setCardioScore] = React.useState<number>();
-
   // updates overall score whenever a component score changes
   React.useEffect(() => {
-    setScore(strengthScore! + enduranceScore! + cardioScore!); // these are non-null assertion operators
-  }, [strengthScore, enduranceScore, cardioScore]);
+    setOverallPoints((strengthPoints! + endurancePoints! + cardioPoints!));
+  }, [strengthPoints, endurancePoints, cardioPoints]);
 
-  function handleStrength(val: number): void {
-    setStrengthScore(val);
+  function handleStrength(ex: boolean, val: number): void {
+    ex ? setStrengthMax(0) : setStrengthMax(20)
+    setStrengthPoints(val);
   }
-  function handleEndurance(val: number): void {
-    setEnduranceScore(val);
+  function handleEndurance(ex: boolean, val: number): void {
+    ex ? setEnduranceMax(0) : setEnduranceMax(20)
+    setEndurancePoints(val);
   }
-  function handleCardio(val: number): void {
-    setCardioScore(val);
-  }
-
-  interface DataFile {
-    strength: {
-      "push-ups": DataComponent,
-      "hand-release-push-ups": DataComponent
-    },
-    endurance: {
-      "sit-ups": DataComponent,
-      "crunches": DataComponent,
-      plank: DataComponent
-    },
-    cardio: {
-      run: DataComponent,
-      hamr: DataComponent
-    }
-  }
-  
-  interface DataComponent {
-    component: string,
-    reps: number[],
-    points: number[]
+  function handleCardio(ex: boolean, val: number): void {
+    ex ? setCardioMax(0) : setCardioMax(60)
+    setCardioPoints(val);
   }
   
   const [data, ] = React.useContext(DataContext)
-
 
   return (
     <div className='bg-white h-full w-full relative overflow-hidden'>
       {/* TODO: set goal score in upper left corner, while keeping score centered */}
       {/* only after slider auto-adjust is working */}
-      <OverallScore score={score} />
+      <OverallScore score={overallPoints / overallMax * 100} />
       
       <MenuController closed={true} />
 

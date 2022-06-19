@@ -1,6 +1,6 @@
 import React from "react";
 import "../../css/slider.css";
-import { DataContext, MaxOverallScoreContext } from "../ContextWrapper";
+import { DataContext } from "../ContextWrapper";
 
 // TODO: when bracket changes, adjust slider to new minimum so score doesn't go out of range and show NaN
 export default function Slider({ category, component, handlePointsSlider }) {
@@ -10,6 +10,9 @@ export default function Slider({ category, component, handlePointsSlider }) {
   const max = repsArray.length;
 
   const [sliderPos, setSliderPos] = React.useState(-max+1);
+  React.useEffect(() => {
+    setSliderPos(-max + 1);
+  }, [max])
   const [reps, setReps] = React.useState(repsArray[0]);
   const [points, setPoints] = React.useState(pointsArray[0]);
   const [labelHeight, setLabelHeight] = React.useState(0 / max);
@@ -19,7 +22,7 @@ export default function Slider({ category, component, handlePointsSlider }) {
     setReps(repsArray[Math.abs(sliderPos)]);
     setPoints(pointsArray[Math.abs(sliderPos)]);
     setLabelHeight((Math.abs(sliderPos) / max) * 100 - 5);
-  }, [data, sliderPos]);
+  }, [data, sliderPos, max, handlePointsSlider]);
 
   // never refer to state in the same useEffect in which it's updated
   // this is why my points were using the PREVIOUS slider index
@@ -40,7 +43,7 @@ export default function Slider({ category, component, handlePointsSlider }) {
           // min and max switched to handle reversed JSON
           max={0}
           min={-max + 1}
-          value={sliderPos}
+          defaultValue={sliderPos}
           className="cursor-pointer slider w-full h-full"
           onChange={e => setSliderPos(e.target.value)}
           orient="vertical"

@@ -13,28 +13,35 @@ export default function ComponentColumn({category, data, handlePointsTop}) {
   let components: string[] = Object.keys(data);
   components.push('EXEMPT');
 
-  const [maxOverallScore, setMaxOverallScore] = React.useContext(MaxOverallScoreContext)
   const maxPoints: number = data[components[0]].points[0]; // differs by category, regardless of exempt status
   
-  const [component, setComponent] = React.useState(components[0])
+  const [component, setComponent] = React.useState<string>(components[0])
+  const [isExempt, setIsExempt] = React.useState<boolean>(false)
+  const [compScore, setCompScore] = React.useState<number>();
+
+  React.useEffect(() => {
+    handlePointsTop(isExempt, 0)
+  }, [isExempt])
 
   function handleSelect(option: string) {
-    if (option === 'EXEMPT') {
-      setMaxOverallScore(maxOverallScore - maxPoints)
-    }
-    // else {
-      // maxScore += maxPoints
-      // }
     setComponent(option);
   }
-  
-  const [compScore, setCompScore] = React.useState<number>();
+
 
   function handlePointsColumn(points: number) {
     setCompScore(points);
-    handlePointsTop(points)
+    handlePointsTop(isExempt, points);
   }
   
+  // set comp score to 0 when EXEMPT
+  React.useEffect(() => {
+    if (component === 'EXEMPT') {
+      setIsExempt(true);
+      setCompScore(0);
+    } else {
+      setIsExempt(false)
+    }
+  }, [component])
 
   return (
     <div className="flex flex-col text-center w-1/4 h-full">
